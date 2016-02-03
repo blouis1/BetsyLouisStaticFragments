@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberSigned|numberDecimal"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/number1"
         android:layout_gravity="center_horizontal" />
 
     <EditText
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberSigned|numberDecimal"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/number2"
         android:layout_gravity="center_horizontal" />
 
     <Button
