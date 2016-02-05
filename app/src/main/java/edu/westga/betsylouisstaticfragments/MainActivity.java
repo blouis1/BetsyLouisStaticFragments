@@ -8,8 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity  implements DataEntryFragment.DataEntryListener {
+public class MainActivity extends AppCompatActivity  implements DataEntryFragment.DataEntryListener, DataDisplayFragment.DataAddListener {
+
+    private double number1;
+    private double number2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +56,23 @@ public class MainActivity extends AppCompatActivity  implements DataEntryFragmen
 
     @Override
     public void onDataEntry(double number1, double number2) {
+        this.number1 = number1;
+        this.number2 = number2;
         DataDisplayFragment displayFragment = (DataDisplayFragment)
                 getSupportFragmentManager().findFragmentById(R.id.dataDisplayFragment);
         displayFragment.setNumber1(number1);
         displayFragment.setNumber2(number2);
         displayFragment.multiply();
         displayFragment.displayProduct();
+    }
+
+    @Override
+    public void onDataAdd() {
+        DisplaySumFragment addFragment = (DisplaySumFragment)
+                getSupportFragmentManager().findFragmentById(R.id.dataAddFragment);
+        addFragment.setNumber1(this.number1);
+        addFragment.setNumber2(this.number2);
+        addFragment.add();
+        addFragment.displaySum();
     }
 }
