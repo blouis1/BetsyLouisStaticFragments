@@ -42,7 +42,6 @@ public class DataEntryFragment extends Fragment {
             }
         });
 
-
         return theView;
     }
 
@@ -52,9 +51,23 @@ public class DataEntryFragment extends Fragment {
 
     private void multiplyButtonClicked(View v) {
 
-        double number1 = Double.parseDouble(this.etNumber1.getText().toString());
-        double number2 = Double.parseDouble(this.etNumber2.getText().toString());
-        this.listener.onDataEntry(number1, number2);
+        boolean isError = false;
+        if (this.etNumber2.getText().toString().trim().length() == 0) {
+            isError = true;
+            this.etNumber2.setError("Please enter a number");
+            this.etNumber2.requestFocus();
+        }
+        if (this.etNumber1.getText().toString().trim().length() == 0) {
+            isError = true;
+            this.etNumber1.setError("Please enter a number");
+            this.etNumber1.requestFocus();
+        }
+        if (!isError) {
+            double number1 = Double.parseDouble(this.etNumber1.getText().toString());
+            double number2 = Double.parseDouble(this.etNumber2.getText().toString());
+            this.listener.onDataEntry(number1, number2);
+        }
+
     }
 
     @Override
